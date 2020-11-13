@@ -71,7 +71,7 @@ Plug 'dyng/ctrlsf.vim'
 call plug#end()
 
 " ====== coc settings start =============================
-let g:coc_global_extensions=[ 'coc-omnisharp', 'coc-json', 'coc-sql', 'coc-eslint', 'coc-html', 'coc-db' ]
+let g:coc_global_extensions=[ 'coc-json', 'coc-sql', 'coc-eslint', 'coc-html', 'coc-db' ]
 
 " NOTE: For XAML files, in vim you can run :setf xml
 " and this will treat it as an xml file and will show coloring which makes it easier to read.
@@ -160,7 +160,7 @@ let g:plug_window = 'noautocmd vertical topleft new'
 
 " =================vim Sharpenup settings start==========
 " note that using CTRL isn't feasible so we will use z instead, I chose z because it's the closest key to left ctrl
-let g:sharpenup_map_prefix = '.'
+let g:sharpenup_map_prefix = ','
 " =================vim Sharpenup settings end============
 
 " ================ dyng/ctrlsf.vim settings start ==============
