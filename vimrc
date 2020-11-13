@@ -35,10 +35,11 @@ Plug 'mengelbrecht/lightline-bufferline'
 Plug 'sainnhe/lightline_foobar.vim'
 
 " LSP
-Plug 'prabirshrestha/vim-lsp'
-Plug 'mattn/vim-lsp-settings'
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
+"Plug 'prabirshrestha/vim-lsp'
+"Plug 'mattn/vim-lsp-settings'
+"Plug 'prabirshrestha/asyncomplete-lsp.vim'
 
+Plug 'neoclide/coc.nvim'
 
 " Comments
 Plug 'preservim/nerdcommenter'
@@ -139,8 +140,10 @@ let g:asyncomplete_auto_completeopt = 0
 " Sharpenup: {{{
 " All sharpenup mappings will begin with `<Space>os`, e.g. `<Space>osgd` for
 " :OmniSharpGotoDefinition
-let g:sharpenup_map_prefix = '<Space>os'
+"let g:sharpenup_map_prefix = '<Space>os'
+let g:sharpenup_map_prefix = ','
 
+"let g:sharupenup_create_mappings = 0
 let g:sharpenup_statusline_opts = { 'Text': '%s (%p/%P)' }
 let g:sharpenup_statusline_opts.Highlight = 0
 
@@ -159,7 +162,7 @@ let g:lightline = {
 \     ['lineinfo'], ['percent'],
 \     ['fileformat', 'fileencoding', 'filetype', 'sharpenup']
 \   ],
-\   'left': [ ['mode', 'paste'], ['gitbranch','readonly', 'absolutepath', 'modified'] ]
+\   'left': [ ['mode', 'paste'], ['gitbranch','readonly', 'absolutepath', 'modified','cocstatus'] ]
 \ },
 \ 'tabline': {
 \   'left': [ ['buffers'] ],
@@ -172,7 +175,8 @@ let g:lightline = {
 \   'sharpenup': sharpenup#statusline#Build()
 \ },
 \ 'component_function': {
-\   'gitbranch': 'FugitiveHead'
+\   'gitbranch': 'FugitiveHead',
+\   'cocstatus': 'coc#status'
 \ },
 \ 'component_expand': {
 \   'linter_checking': 'lightline#ale#checking',
@@ -241,3 +245,8 @@ let g:lightline.separator = {'left': "\u25B6", 'right': " \u2B81 "}
 "let g:lightline#bufferline#enable_nerdfont=1
 let g:lightline#bufferline#unicode_symbols = 1
 
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
