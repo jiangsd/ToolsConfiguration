@@ -56,6 +56,10 @@ endif
 call plug#end()
 " }}}
 
+" COC Settings: {{{
+let g:coc_global_extensions=['coc-java', 'coc-json', 'coc-eslint', 'coc-html', 'coc-tsserver']
+" }}}
+
 " Settings: {{{
 filetype indent plugin on
 if !exists('g:syntax_on') | syntax enable | endif
