@@ -44,6 +44,13 @@ Plug 'neoclide/coc.nvim'
 " Comments
 Plug 'preservim/nerdcommenter'
 
+" Tree
+Plug 'preservim/nerdtree'
+
+"Markdown"
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+
 " Git
 Plug 'tpope/vim-fugitive'
 
@@ -52,6 +59,8 @@ Plug 'tpope/vim-fugitive'
 if s:using_snippets
   Plug 'sirver/ultisnips'
 endif
+
+Plug 'mbbill/undotree'
 
 call plug#end()
 " }}}
@@ -66,6 +75,8 @@ if !exists('g:syntax_on') | syntax enable | endif
 set encoding=utf-8
 scriptencoding utf-8
 
+" use system clipboard
+set clipboard=unnamedplus
 
 set completeopt=menuone,noinsert,noselect,popuphidden
 set completepopup=highlight:Pmenu,border:off
@@ -99,6 +110,12 @@ set mouse=a
 set updatetime=1000
 
 set showtabline=2
+
+set smartcase
+set noswapfile
+set nobackup
+set undodir=~/.vim/undodir
+set undofile
 " }}}
 
 " Colors: {{{
@@ -130,12 +147,19 @@ let g:ale_sign_info = '·'
 let g:ale_sign_style_error = '·'
 let g:ale_sign_style_warning = '·'
 
+let g:ale_fix_on_save = 1
 "let g:ale_linters = { 'cs': ['OmniSharp'] }
 "let g:ale_linters = { 'cs': ['mcs'] }
 let g:ale_linters = { 
             \'cs': ['mcs'],
-            \'java':['javac', 'eclipselsp']
+            \'java':['eclipselsp'],
+            \'typescript':['eslint', 'tsserver']
             \}
+let g:ale_fixer = {
+            \'javascript': ['prettier', 'eslint'],
+            \'typescript': ['prettier', 'eslint']
+            \}
+let g:ale_javascript_prettier_options = '--single-quote --trailing-comma all'
 " }}}
 
 " Asyncomplete: {{{
@@ -240,6 +264,8 @@ let g:OmniSharp_highlight_groups = {
 
 au BufRead,BufNewFile *.cshtml set filetype=html
 
+au BufRead,BufNewFile *.tsx set filetype=typescript.tsx
+
 "let g:lightline.component_raw = {'123': 2}
 let g:lightline.separator = {'left': "\u25B6", 'right': " \u2B81 "}
 "let g:lightline.subseparator = {'left': 'S', 'right': 'S'}
@@ -256,3 +282,10 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+
+" NERD  Commenter
+let g:NERDSpaceDelims = 1
+let g:NERDCompactSexyComs = 1
+let g:NERDDefaultAlign = 'left'
+let g:NERDTrimTrailingWhitespace = 1
+let g:NERDToggleCheckAllLines = 1
